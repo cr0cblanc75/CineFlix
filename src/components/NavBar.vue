@@ -24,13 +24,7 @@ const links = [
 
       <!-- Navigation -->
       <nav class="flex justify-center gap-8 text-sm font-medium">
-        <button
-          v-for="link in links"
-          :key="link.id"
-          class="transition-colors"
-          :class="view === link.id ? 'text-slate-900 font-semibold' : 'text-slate-500 hover:text-slate-900'"
-          @click="$emit('change', link.id)"
-        >
+        <button v-for="link in links" :key="link.id" class="transition-colors" :class="view === link.id ? 'text-slate-900 font-semibold' : 'text-slate-500 hover:text-slate-900'" @click="$emit('change', link.id)">
           {{ link.label }}
         </button>
       </nav>

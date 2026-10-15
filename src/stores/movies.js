@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { getMovieById, searchMovies } from '../api/omdb'
 
-// OMDb n'a pas d'endpoint "tendances" : on utilise une sélection d'IDs IMDb
+// OMDb has no endpoint "tendances" sur we use a smart selection of movies
 const TRENDING_IDS = [
   'tt15398776', // Oppenheimer
   'tt1160419', // Dune
@@ -10,7 +10,7 @@ const TRENDING_IDS = [
   'tt1856101', // Blade Runner 2049
 ]
 
-const MAX_RESULTS = 10
+const MAX_RESULTS = 20
 
 export const useMoviesStore = defineStore('movies', {
   state: () => ({
@@ -25,7 +25,7 @@ export const useMoviesStore = defineStore('movies', {
   getters: {
     isFavorite: (state) => (id) => state.favorites.some((m) => m.imdbID === id),
     isSearching: (state) => state.query.trim().length > 0,
-    // Ce qui est affiché sous le hero : résultats de recherche ou tendances
+    // What is display under the Hero section: trending movies or search results
     displayed: (state) => (state.query.trim() ? state.results : state.trending),
   },
 
@@ -53,7 +53,7 @@ export const useMoviesStore = defineStore('movies', {
       this.error = null
       try {
         const list = await searchMovies(query.trim())
-        // La recherche ne renvoie pas genre/réalisateur : on récupère les détails
+        // The search does not return genre/director : we fetch the details
         this.results = await Promise.all(
           list.slice(0, MAX_RESULTS).map((m) => getMovieById(m.imdbID)),
         )
