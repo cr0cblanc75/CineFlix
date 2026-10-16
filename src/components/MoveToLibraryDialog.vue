@@ -4,6 +4,7 @@ import { useLibraryStore } from '../stores/library'
 import BaseModal from './BaseModal.vue'
 import CreateLibraryDialog from './CreateLibraryDialog.vue'
 import LibraryIcon from '@/assets/Library-Icon.svg?component'
+import SearchIcon from '@/assets/Search-Icon.svg?component'
 
 const props = defineProps({ movie: { type: Object, required: true } })
 const emit = defineEmits(['close'])
@@ -41,13 +42,17 @@ function confirm() {
         <h2 class="text-sm font-bold">Move to film library</h2>
         <p class="mt-0.5 truncate text-xs text-slate-500">{{ movie.Title }}</p>
 
-        <input v-model="search" placeholder="Search film collections" class="mt-4 w-full rounded-lg border border-slate-200 px-3 py-2 text-xs focus:border-brand focus:outline-none" />
+        <div class="relative mt-4">
+            <SearchIcon class="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+            <input v-model="search" placeholder="Search film collections" class="w-full rounded-lg border border-slate-200 py-2 pl-9 pr-3 text-xs focus:border-brand focus:outline-none" />
+        </div>
 
         <div class="mt-4 flex items-center justify-between text-[11px] text-slate-500">
             <span>All collections</span>
             <span>{{ library.libraries.length }} collections</span>
         </div>
 
+        <!-- Library List -->
         <ul class="mt-2 max-h-64 space-y-2 overflow-y-auto">
             <li v-for="lib in filtered" :key="lib.id">
                 <button class="flex w-full items-center gap-3 rounded-lg border px-3 py-2.5 text-left transition-colors" :class="selected.includes(lib.id) ? 'border-brand bg-orange-50/50' : 'border-slate-200 hover:bg-slate-50'" @click="toggle(lib.id)">
@@ -70,6 +75,7 @@ function confirm() {
             </li>
         </ul>
 
+        <!-- Action Buttons -->
         <div class="mt-5 flex items-center justify-between">
             <button class="text-xs font-medium text-brand hover:text-brand-dark" @click="creating = true">
                 + New library
