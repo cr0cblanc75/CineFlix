@@ -1,14 +1,14 @@
 /**
- * URL d'un film : titre lisible + identifiant IMDb.
+ * URL of a film : title readable + IMDb identifier.
  * Ex. "Oppenheimer" (tt15398776) -> "oppenheimer-tt15398776"
- * L'identifiant à la fin évite les ambiguïtés entre films de même titre
- * et permet de retrouver le film dans OMDb.
+ * The identifier at the end avoids ambiguities between films of the same title
+ * and allows to find the film in OMDb.
  */
 export function movieSlug(movie) {
   const title = (movie.Title || '')
     .toLowerCase()
     .normalize('NFD')
-    .replace(/[̀-ͯ]/g, '') // enlève les accents
+    .replace(/[̀-ͯ]/g, '') // erase the accents
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '')
   return title ? `${title}-${movie.imdbID}` : movie.imdbID
