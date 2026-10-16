@@ -41,7 +41,7 @@ function act(name) {
                 </div>
             </RouterLink>
 
-            <!-- Menu -->
+            <!-- Tripple dots Menu -->
             <div v-if="actions" class="absolute left-2 top-2">
                 <button class="flex h-6 w-6 items-center justify-center rounded-full bg-black/55 text-white hover:bg-black/75" aria-label="Actions" @click="menu = !menu">
                     <svg viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor">
@@ -51,7 +51,7 @@ function act(name) {
                     </svg>
                 </button>
 
-
+                <!-- The open tab menu -->
                 <template v-if="menu">
                     <div class="fixed inset-0 z-10" @click="menu = false"></div>
                     <ul class="absolute left-0 z-20 mt-1 w-48 rounded-lg border border-slate-200 bg-white py-1 text-xs shadow-lg">
