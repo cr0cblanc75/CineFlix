@@ -10,8 +10,6 @@ const TRENDING_IDS = [
     "tt1856101", // Blade Runner 2049
 ];
 
-const MAX_RESULTS = 20;
-
 function load(key) {
     try {
         return JSON.parse(localStorage.getItem(key) || "[]");
@@ -28,8 +26,14 @@ function toggleIn(list, movie) {
 
 export const useMoviesStore = defineStore("movies", {
     state: () => ({
+        // storing results
         trending: [],
         results: [],
+        // result pagination
+        page: 1,
+        totalResults: 0,
+        loadingMore: false,
+        // result gaether
         query: "",
         loading: false,
         error: null,
@@ -66,22 +70,52 @@ export const useMoviesStore = defineStore("movies", {
 
         async search(query) {
             this.query = query;
+            this.page = 1;
+            this.totalResults = 0;
+            this.results = [];
+            this.error = null;
+
             if (!query.trim()) {
-                this.results = [];
-                this.error = null;
+                this.loading = false;
                 return;
             }
+
             this.loading = true;
-            this.error = null;
+
             try {
-                const list = await searchMovies(query.trim());
-                // The search don't return genre/director : we fetch the details
-                this.results = await Promise.all(list.slice(0, MAX_RESULTS).map((m) => getMovieById(m.imdbID)));
+                const data = await searchMovies(query.trim(), 1);
+
+                this.totalResults = data.totalResults;
+
+                this.results = await Promise.all(data.movies.map((movie) => getMovieById(movie.imdbID)));
             } catch (e) {
-                this.results = [];
                 this.error = e.message;
             } finally {
                 this.loading = false;
+            }
+        },
+
+        async loadMore() {
+            if (this.loading || this.loadingMore || this.results.length >= this.totalResults) {
+                return;
+            }
+
+            const requestedPage = this.page + 1;
+            this.loadingMore = true;
+            this.error = null;
+
+            try {
+                const data = await searchMovies(this.query.trim(), requestedPage);
+
+                const movies = await Promise.all(data.movies.map((movie) => getMovieById(movie.imdbID)));
+
+                this.results.push(...movies);
+                this.page = requestedPage;
+                this.totalResults = data.totalResults;
+            } catch (e) {
+                this.error = e.message;
+            } finally {
+                this.loadingMore = false;
             }
         },
 

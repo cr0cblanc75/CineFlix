@@ -20,7 +20,7 @@ onMounted(() => store.fetchTrending())
 
   <template v-if="view === 'discover'">
     <HeroSearch />
-    <MovieGrid :title="gridTitle" :movies="store.displayed" :loading="store.loading" :error="store.error" empty-text="Aucun film trouvé." />
+    <MovieGrid :title="gridTitle" :movies="store.displayed" :loading="store.loading" :loading-more="store.loadingMore" :has-more="store.isSearching && store.results.length < store.totalResults" :error="store.error" empty-text="Aucun film trouvé." @load-more="store.loadMore()" />
   </template>
 
   <MovieGrid v-else title="My Lists" :movies="store.favorites" empty-text="Ta liste est vide : clique sur le cœur d'une affiche pour ajouter un film." />

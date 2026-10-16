@@ -30,3 +30,20 @@ npm run dev
 ```sh
 npm run build
 ```
+
+
+<br>
+
+## Features
+- auto URL for each film selection
+- "Load More" button
+- Dark/Light mode
+- fully responsive web page
+- empty states for every "Lists"
+- Error message if API fail
+- Success message if API succeed
+- Loading indicator
+- "No result found" state if no result has been found
+- in a list Detail : additional information are provided from the API
+- Vue Router is used with parameters states
+- hard save in Vuex (no loss on reload or shutdown of instance)
