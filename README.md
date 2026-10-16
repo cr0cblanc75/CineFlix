@@ -47,3 +47,10 @@ npm run build
 - in a list Detail : additional information are provided from the API
 - Vue Router is used with parameters states
 - hard save in Vuex (no loss on reload or shutdown of instance)
+- watched/unWatched button for film 
+- Library creation, without duplication
+- filter to sort film
+- filter to search for a film in ou library
+- filtre to search for a specific library
+- Change name of a library + delete a library 
+- confirmation message when clicking on "Delete"

@@ -4,6 +4,11 @@ import { useRoute } from 'vue-router'
 import { useMoviesStore } from '../stores/movies'
 import { idFromSlug } from '../utils/slug'
 import NavBar from '../components/NavBar.vue'
+import { useLibraryStore } from '../stores/library'
+import MoveToLibraryDialog from '../components/MoveToLibraryDialog.vue'
+
+const library = useLibraryStore()
+const showPicker = ref(false)
 
 const route = useRoute()
 const store = useMoviesStore()
@@ -49,7 +54,8 @@ const moreInfo = computed(() => {
 
 <template>
   <NavBar />
-
+  <MoveToLibraryDialog v-if="showPicker && movie" :movie="movie" @close="showPicker = false" />
+  
   <main class="mx-auto max-w-[1280px] px-4 py-8">
     <RouterLink to="/" class="inline-flex items-center gap-2 text-sm text-slate-600 hover:text-slate-900">
       <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2">
@@ -222,14 +228,12 @@ const moreInfo = computed(() => {
                   : 'Add to Favourites' }}
               </button>
 
-              <button class="inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:bg-slate-50" @click="store.toggleWatchlist(movie)">
-                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8">
-                  <path v-if="store.isInWatchlist(movie.imdbID)" d="m5 12 5 5L20 7" />
+              <button class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-semibold transition-colors hover:bg-slate-50" @click="showPicker = true">
+                <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2">
+                  <path v-if="library.librariesOf(movie.imdbID).length" d="M5 12l5 5L20 7" />
                   <path v-else d="M12 5v14M5 12h14" />
                 </svg>
-                {{ store.isInWatchlist(movie.imdbID)
-                  ? 'In My List'
-                  : 'Add to List' }}
+                {{ library.librariesOf(movie.imdbID).length ? 'In a Library' : 'Add to List' }}
               </button>
 
             </div>
