@@ -58,7 +58,7 @@ export const useLibraryStore = defineStore("library", {
             this.persist();
         },
 
-        /** Le film sera présent dans exactement les bibliothèques de `ids` */
+        /** The film will be present in exactly the libraries of `ids` */
         setMovieLibraries(movie, ids) {
             for (const lib of this.libraries) {
                 const has = lib.movies.some((m) => m.imdbID === movie.imdbID);
