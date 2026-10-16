@@ -9,8 +9,9 @@ Yup, I'll explain later the project.
 3. Your file should looks like this :
 
 ```js
-VITE_OMDB_API_KEY=XXXXXXXX;
+VITE_OMDB_API_KEY = XXXXXXXX;
 ```
+
 <br>
 
 ## Project Setup
@@ -31,10 +32,10 @@ npm run dev
 npm run build
 ```
 
-
 <br>
 
 ## Features
+
 - auto URL for each film selection
 - "Load More" button
 - Dark/Light mode
@@ -47,10 +48,11 @@ npm run build
 - in a list Detail : additional information are provided from the API
 - Vue Router is used with parameters states
 - hard save in Vuex (no loss on reload or shutdown of instance)
-- watched/unWatched button for film 
+- watched/unWatched button for film
 - Library creation, without duplication
 - filter to sort film
 - filter to search for a film in ou library
 - filtre to search for a specific library
-- Change name of a library + delete a library 
+- Change name of a library + delete a library
 - confirmation message when clicking on "Delete"
+- sats on how many film y have in my Library + how many watched + how many unWatched
