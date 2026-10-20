@@ -55,7 +55,7 @@ const moreInfo = computed(() => {
 <template>
   <NavBar />
   <MoveToLibraryDialog v-if="showPicker && movie" :movie="movie" @close="showPicker = false" />
-  
+
   <main class="mx-auto max-w-[1280px] px-4 py-8">
     <RouterLink to="/" class="inline-flex items-center gap-2 text-sm text-slate-600 hover:text-slate-900">
       <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2">
@@ -99,7 +99,7 @@ const moreInfo = computed(() => {
             <span class="text-slate-500">{{ meta }}</span>
           </div>
 
-          <h1 class="mt-4 text-3xl font-extrabold tracking-tight md:text-5xl">{{ movie.Title }}</h1>
+          <h1 class="mt-4 text-3xl font-extrabold tracking-tight md:text-5xl text-[var(--color-text-LB)]">{{ movie.Title }}</h1>
 
           <p v-if="plot" class="mt-4 mb-6 line-clamp-3 text-base leading-relaxed text-slate-500">
             {{ plot }}
@@ -113,7 +113,7 @@ const moreInfo = computed(() => {
             <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
               <div v-if="val(movie.Director)" class="flex items-start gap-3 rounded-xl bg-slate-50 p-4">
                 <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white text-slate-600 shadow-sm">
-                  <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="var(--color-slate-600)" stroke-width="1.8">
                     <rect x="3" y="7" width="18" height="14" rx="2" />
                     <path d="M7 7V4h10v3M8 12h8M8 16h5" />
                   </svg>
@@ -123,7 +123,7 @@ const moreInfo = computed(() => {
                   <p class="text-xs font-medium uppercase tracking-wider text-slate-500">
                     Director
                   </p>
-                  <p class="mt-1 text-sm font-semibold text-slate-900">
+                  <p class="mt-1 text-sm font-semibold text-[var(--color-text-LB)]">
                     {{ movie.Director }}
                   </p>
                 </div>
@@ -140,7 +140,7 @@ const moreInfo = computed(() => {
                   <p class="text-xs font-medium uppercase tracking-wider text-slate-500">
                     Release date
                   </p>
-                  <p class="mt-1 text-sm font-semibold text-slate-900">
+                  <p class="mt-1 text-sm font-semibold text-[var(--color-text-LB)]">
                     {{ movie.Released }}
                   </p>
                 </div>
@@ -169,7 +169,7 @@ const moreInfo = computed(() => {
             <!-- Rating -->
             <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
 
-              <div v-if="val(movie.imdbRating)" class="flex items-center gap-4 rounded-xl border border-amber-200/70 bg-amber-50/60 p-3">
+              <div v-if="val(movie.imdbRating)" class="flex items-center gap-4 rounded-xl border border-amber-200/70 bg-amber-50/60 dark:bg-amber-900/40 dark:border-amber-600/50 p-3">
                 <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white text-amber-500 shadow-sm">
                   <svg viewBox="0 0 24 24" class="h-7 w-7" fill="currentColor">
                     <path d="m12 2.5 2.9 5.9 6.5.9-4.7 4.6 1.1 6.5-5.8-3.1-5.8 3.1 1.1-6.5-4.7-4.6 6.5-.9L12 2.5Z" />
@@ -180,7 +180,7 @@ const moreInfo = computed(() => {
                   <p class="text-xs font-medium uppercase tracking-wider text-amber-800">
                     IMDb rating
                   </p>
-                  <p class="mt-0.5 text-2xl font-extrabold tracking-tight text-slate-900">
+                  <p class="mt-0.5 text-2xl font-extrabold tracking-tight text-[var(--color-text-LB)]">
                     {{ movie.imdbRating }}
                     <span class="text-sm font-medium text-slate-500">/ 10</span>
                   </p>
@@ -203,7 +203,7 @@ const moreInfo = computed(() => {
                   <p class="text-xs font-medium uppercase tracking-wider text-slate-500">
                     Awards
                   </p>
-                  <p class="mt-0.5 text-2xl font-extrabold tracking-tight text-slate-900">
+                  <p class="mt-0.5 text-2xl font-extrabold tracking-tight text-[var(--color-text-LB)]">
                     {{ wins }}
                   </p>
                   <p class="mt-0.5 text-xs leading-relaxed text-slate-500">
@@ -215,7 +215,7 @@ const moreInfo = computed(() => {
             </div>
 
             <!-- Actions -->
-            <div class="flex flex-col gap-3 border-t border-slate-200 pt-5 sm:flex-row">
+            <div class="flex flex-col gap-3 border-t border-[var(--color-slate-300)] pt-5 sm:flex-row">
 
               <button class="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5" :class="store.isFavorite(movie.imdbID)
                 ? 'bg-rose-100 text-rose-700 hover:bg-rose-200'
@@ -228,18 +228,16 @@ const moreInfo = computed(() => {
                   : 'Add to Favourites' }}
               </button>
 
-              <button class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-semibold transition-colors hover:bg-slate-50" @click="showPicker = true">
+              <button class="inline-flex items-center gap-2 rounded-full border border-[var(--color-slate-300)] bg-white px-6 py-3 text-sm font-semibold transition-colors hover:bg-slate-50" @click="showPicker = true">
                 <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2">
                   <path v-if="library.librariesOf(movie.imdbID).length" d="M5 12l5 5L20 7" />
                   <path v-else d="M12 5v14M5 12h14" />
                 </svg>
                 {{ library.librariesOf(movie.imdbID).length ? 'In a Library' : 'Add to List' }}
               </button>
-
             </div>
 
           </div>
-
 
         </div>
       </div>
@@ -251,13 +249,13 @@ const moreInfo = computed(() => {
 
         <!-- Story / Reviews -->
         <div class="min-w-0">
-          <div class="flex gap-6 border-b border-slate-200 text-sm">
+          <div class="flex gap-6 border-b border-[var(--color-slate-300)] text-sm">
             <button v-for="t in [
               { id: 'story', label: 'Story' },
               { id: 'reviews', label: 'Reviews' },
             ]" :key="t.id" class="border-b-2 pb-3 transition-colors" :class="tab === t.id
-              ? 'border-brand font-semibold text-slate-900'
-              : 'border-transparent text-slate-500 hover:text-slate-900'" @click="tab = t.id">
+              ? 'border-brand font-semibold text-[var(--color-slate-900)]'
+              : 'border-transparent text-[var(--color-slate-500)] hover:text-[var(--color-slate-900)]'" @click="tab = t.id">
               {{ t.label }}
             </button>
           </div>
@@ -293,8 +291,8 @@ const moreInfo = computed(() => {
 
           <div class="mt-4 divide-y divide-slate-100">
             <div v-for="info in moreInfo" :key="info.label" class="py-3 first:pt-0 last:pb-0">
-              <p class="text-xs text-slate-500">{{ info.label }}</p>
-              <p class="mt-1 break-words text-sm font-semibold text-slate-900">
+              <p class="text-xs text-[var(--color-slate-500)]">{{ info.label }}</p>
+              <p class="mt-1 break-words text-sm font-semibold text-[var(--color-text-LB)]">
                 {{ info.value }}
               </p>
             </div>

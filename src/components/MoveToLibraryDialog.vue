@@ -40,14 +40,14 @@ function confirm() {
 <template>
     <BaseModal @close="emit('close')">
         <h2 class="text-sm font-bold">Move to film library</h2>
-        <p class="mt-0.5 truncate text-xs text-slate-500">{{ movie.Title }}</p>
+        <p class="mt-0.5 truncate text-xs text-[var(--color-slate-500)]">{{ movie.Title }}</p>
 
         <div class="relative mt-4">
-            <SearchIcon class="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
-            <input v-model="search" placeholder="Search film collections" class="w-full rounded-lg border border-slate-200 py-2 pl-9 pr-3 text-xs focus:border-brand focus:outline-none" />
+            <SearchIcon class="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--color-slate-500)]" />
+            <input v-model="search" placeholder="Search film collections" class="w-full rounded-lg border border-[var(--color-slate-300)] py-2 pl-9 pr-3 text-xs focus:border-brand focus:outline-none" />
         </div>
 
-        <div class="mt-4 flex items-center justify-between text-[11px] text-slate-500">
+        <div class="mt-4 flex items-center justify-between text-[11px] text-[var(--color-slate-500)]">
             <span>All collections</span>
             <span>{{ library.libraries.length }} collections</span>
         </div>
@@ -55,15 +55,15 @@ function confirm() {
         <!-- Library List -->
         <ul class="mt-2 max-h-64 space-y-2 overflow-y-auto">
             <li v-for="lib in filtered" :key="lib.id">
-                <button class="flex w-full items-center gap-3 rounded-lg border px-3 py-2.5 text-left transition-colors" :class="selected.includes(lib.id) ? 'border-brand bg-orange-50/50' : 'border-slate-200 hover:bg-slate-50'" @click="toggle(lib.id)">
-                    <LibraryIcon class="h-8 w-8 shrink-0 text-slate-400" />
+                <button class="flex w-full items-center gap-3 rounded-lg border px-3 py-2.5 text-left transition-colors" :class="selected.includes(lib.id) ? 'border-amber-200/90 dark:border-amber-600/50 bg-amber-50/70 dark:bg-amber-900/40' : 'border-[var(--color-slate-300)] hover:bg-[var(--color-slate-50)]'" @click="toggle(lib.id)">
+                    <LibraryIcon class="h-8 w-8 shrink-0 text-[var(--color-slate-400)]" />
                     <span class="min-w-0 flex-1">
                         <span class="block truncate text-xs font-semibold">{{ lib.name }}</span>
-                        <span class="block text-[11px] text-slate-500">
+                        <span class="block text-[11px] text-[var(--color-slate-500)]">
                             {{ lib.movies.length }} film{{ lib.movies.length === 1 ? '' : 's' }}
                         </span>
                     </span>
-                    <span class="flex h-5 w-5 items-center justify-center rounded-full border" :class="selected.includes(lib.id) ? 'border-slate-900 bg-slate-900 text-white' : 'border-slate-300'">
+                    <span class="flex h-5 w-5 items-center justify-center rounded-full border" :class="selected.includes(lib.id) ? 'border-[#0f172a] bg-[#0f172a] text-white' : 'border-[var(--color-slate-300)]'">
                         <svg v-if="selected.includes(lib.id)" viewBox="0 0 24 24" class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="3">
                             <path d="M5 12l5 5L20 7" />
                         </svg>
@@ -77,14 +77,14 @@ function confirm() {
 
         <!-- Action Buttons -->
         <div class="mt-5 flex items-center justify-between">
-            <button class="text-xs font-medium text-brand hover:text-brand-dark" @click="creating = true">
+            <button class="text-xs font-medium text-brand hover:cursor-pointer" @click="creating = true">
                 + New library
             </button>
             <div class="flex items-center gap-3">
-                <button class="px-3 py-2 text-xs font-medium text-slate-600 hover:text-slate-900" @click="emit('close')">
+                <button class="px-3 py-2 text-xs font-medium text-[var(--color-slate-600)] hover:text-[var(--color-slate-900)] hover:cursor-pointer" @click="emit('close')">
                     Cancel
                 </button>
-                <button class="rounded-lg bg-slate-900 px-4 py-2 text-xs font-semibold text-white" @click="confirm">
+                <button class="rounded-lg bg-[var(--color-brand)] px-4 py-2 text-xs font-semibold text-[#ffffff] hover:brightness-110 hover:cursor-pointer" @click="confirm">
                     Add to collection
                 </button>
             </div>
