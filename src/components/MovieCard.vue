@@ -1,12 +1,20 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useMoviesStore } from '../stores/movies'
 import { movieSlug } from '../utils/slug'
 
 const props = defineProps({ movie: { type: Object, required: true } })
 const store = useMoviesStore()
 
-const hasPoster = computed(() => props.movie.Poster && props.movie.Poster !== 'N/A')
+const posterError = ref(false)
+
+const hasPoster = computed(() =>
+  props.movie.Poster &&
+  props.movie.Poster !== 'N/A' &&
+  props.movie.Poster !== 'Not Found' &&
+  !posterError.value
+)
+
 const genres = computed(() => (props.movie.Genre || '').split(', ').slice(0, 2).join(', '))
 const director = computed(() => (props.movie.Director || '').split(', ')[0])
 const to = computed(() => ({ name: 'movie', params: { slug: movieSlug(props.movie) } }))
@@ -16,7 +24,7 @@ const to = computed(() => ({ name: 'movie', params: { slug: movieSlug(props.movi
   <article class="group">
     <div class="relative aspect-[2/3] overflow-hidden rounded-xl bg-slate-200 shadow-sm">
       <RouterLink :to="to" class="block h-full w-full" :aria-label="movie.Title">
-        <img v-if="hasPoster" :src="movie.Poster" :alt="movie.Title" loading="lazy" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
+        <img v-if="hasPoster" :src="movie.Poster" alt="Poster not available" loading="lazy" @error="posterError = true" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
         <div v-else class="flex h-full items-center justify-center p-4 text-center text-sm text-slate-500">
           No poster available
         </div>
@@ -30,7 +38,7 @@ const to = computed(() => ({ name: 'movie', params: { slug: movieSlug(props.movi
     </div>
 
     <h3 class="mt-4 text-base font-semibold leading-tight">
-      <RouterLink :to="to" class="hover:text-brand">{{ movie.Title }}</RouterLink>
+      <RouterLink :to="to" class=" text-[var(--color-text-LB)] hover:text-brand">{{ movie.Title }}</RouterLink>
     </h3>
     <p class="mt-1 text-sm text-slate-500">
       {{ movie.Year }}<template v-if="genres"> • {{ genres }}</template>

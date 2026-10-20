@@ -16,7 +16,7 @@ defineEmits(['load-more'])
 
 <template>
   <section class="mx-auto max-w-[1280px] px-6 py-12">
-    <h2 class="text-2xl font-bold tracking-tight">{{ title }}</h2>
+    <h2 class="text-2xl font-bold tracking-tight text-[var(--color-text-LB)]">{{ title }}</h2>
 
     <!-- Init fetch -->
     <div v-if="loading && !movies.length" class="mt-8 grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-5">
@@ -48,9 +48,7 @@ defineEmits(['load-more'])
 
       <!-- Bouton Load More -->
       <div v-if="hasMore" class="mt-10 flex justify-center">
-        <button @click="$emit('load-more')" :disabled="loadingMore" class="rounded-full bg-white px-8 py-3 font-semibold text-slate-900
-                 shadow transition hover:bg-slate-100
-                 disabled:cursor-not-allowed disabled:opacity-50">
+        <button @click="$emit('load-more')" :disabled="loadingMore" class="rounded-full bg-white px-8 py-3 font-semibold text-[var(--color-slate-900)] shadow transition hover:brightness-110 hover:cursor-pointer disabled:cursor-not-allowed disabled:opacity-50">
           {{ loadingMore ? 'Loading...' : 'Load More' }}
         </button>
       </div>

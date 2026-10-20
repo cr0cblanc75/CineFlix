@@ -57,8 +57,17 @@ const total = computed(() => lib.value?.movies.length ?? 0)
 const watchedCount = computed(() => (lib.value?.movies ?? []).filter((m) => library.isWatched(m.imdbID)).length)
 
 function remove(movie) {
-    if (isFavourites.value) movies.toggleFavorite(movie)
-    else library.removeMovie(lib.value.id, movie.imdbID)
+    const message = isFavourites.value
+        ? `Delete « ${movie.Title} » from favourites ?`
+        : `Delete « ${movie.Title} » from library « ${lib.value.name} » ?`
+
+    if (!confirm(message)) return
+
+    if (isFavourites.value) {
+        movies.toggleFavorite(movie)
+    } else {
+        library.removeMovie(lib.value.id, movie.imdbID)
+    }
 }
 
 function rename(data) {
@@ -67,7 +76,7 @@ function rename(data) {
 }
 
 function destroy() {
-    if (confirm(`Supprimer la bibliothèque « ${lib.value.name} » ?`)) {
+    if (confirm(`Are you sure you want to delete the library « ${lib.value.name} » ?`)) {
         library.deleteLibrary(lib.value.id)
         router.push('/lists')
     }
@@ -105,10 +114,10 @@ function destroy() {
                 </div>
 
                 <div v-if="!isFavourites" class="flex gap-2">
-                    <button class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium hover:bg-slate-50" @click="renaming = true">
+                    <button class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium hover:brightness-110 hover:cursor-pointer" @click="renaming = true">
                         Rename
                     </button>
-                    <button class="rounded-lg border border-red-200 bg-white px-3 py-1.5 text-xs font-medium text-red-600 hover:bg-red-50" @click="destroy">
+                    <button class="rounded-lg border border-red-200 dark:border-red-800 bg-white px-3 py-1.5 text-xs font-medium text-red-600 hover:brightness-110 hover:cursor-pointer" @click="destroy">
                         Delete library
                     </button>
                 </div>
