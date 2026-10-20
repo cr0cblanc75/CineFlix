@@ -9,7 +9,7 @@ const links = [
 </script>
 
 <template>
-  <header class="border-b border-slate-200">
+  <header class="border-b border-slate-200 dark:border-white/20">
     <div class="mx-auto grid h-[62px] max-w-[1280px] grid-cols-3 items-center px-6">
       <!-- Logo -->
       <RouterLink to="/" class="flex items-center gap-3">
