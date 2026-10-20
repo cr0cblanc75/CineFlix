@@ -9,3 +9,35 @@
 body {
   @apply min-h-screen bg-slate-50 font-sans text-slate-900 antialiased;
 }
+
+/* Dark mode: remap the slate scale instead of touching every component */
+.dark {
+  color-scheme: dark;
+  --color-slate-50: var(--color-slate-950);
+  --color-slate-100: var(--color-slate-800);
+  --color-slate-200: var(--color-slate-800);
+  --color-slate-300: var(--color-slate-700);
+  --color-slate-500: var(--color-slate-400);
+  --color-slate-600: var(--color-slate-300);
+  --color-slate-700: var(--color-slate-200);
+}
+
+.dark .bg-white {
+  background-color: var(--color-slate-900);
+}
+
+.dark .text-slate-900 {
+  color: var(--color-slate-50);
+}
+
+.dark .border-slate-900 {
+  border-color: var(--color-slate-100);
+}
+
+.dark .bg-slate-900:not(.absolute) {
+  background-color: var(--color-slate-100);
+}
+
+.dark .bg-slate-900.text-white {
+  color: var(--color-slate-950);
+}
