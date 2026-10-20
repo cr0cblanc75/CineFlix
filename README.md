@@ -9,7 +9,7 @@ Yup, I'll explain later the project.
 3. Your file should looks like this :
 
 ```js
-VITE_OMDB_API_KEY = XXXXXXXX;
+VITE_OMDB_API_KEY=XXXXXXXX
 ```
 
 <br>
