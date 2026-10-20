@@ -30,7 +30,7 @@ const to = computed(() => ({ name: 'movie', params: { slug: movieSlug(props.movi
     </div>
 
     <h3 class="mt-4 text-base font-semibold leading-tight">
-      <RouterLink :to="to" class="hover:text-brand">{{ movie.Title }}</RouterLink>
+      <RouterLink :to="to" class=" text-[var(--color-text-LB)] hover:text-brand">{{ movie.Title }}</RouterLink>
     </h3>
     <p class="mt-1 text-sm text-slate-500">
       {{ movie.Year }}<template v-if="genres"> • {{ genres }}</template>
