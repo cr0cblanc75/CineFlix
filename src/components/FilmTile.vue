@@ -85,7 +85,7 @@ function act(name) {
             </span>
 
             <!-- Badge watched / not watched (clickable) -->
-            <button class="absolute bottom-2 right-2 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-medium text-white" :class="watched ? 'bg-emerald-500' : 'bg-black/70'" @click="library.toggleWatched(movie.imdbID)">
+            <button class="absolute bottom-2 right-2 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-medium text-white hover:cursor-pointer hover:brightness-110" :class="watched ? 'bg-emerald-500' : 'bg-black/70'" @click="library.toggleWatched(movie.imdbID)">
                 {{ watched ? 'Watched' : 'Not watched' }}
             </button>
         </div>
@@ -100,10 +100,10 @@ function act(name) {
 
         <!-- Action Buttons (under film poster)-->
         <div v-if="actions" class="mt-2 flex gap-2">
-            <button class="rounded-md border border-slate-200 bg-white px-2.5 py-1 text-[11px] font-medium hover:bg-slate-50" @click="emit('move')">
+            <button class="rounded-md border border-slate-200 bg-white px-2.5 py-1 text-[11px] font-medium hover:brightness-110 hover:cursor-pointer" @click="emit('move')">
                 Move
             </button>
-            <button class="rounded-md border border-red-200 bg-white px-2.5 py-1 text-[11px] font-medium text-red-600 hover:bg-red-50" @click="emit('remove')">
+            <button class="rounded-md border border-red-200 dark:border-red-800 bg-white px-2.5 py-1 text-[11px] font-medium text-red-600 hover:brightness-110 hover:cursor-pointer" @click="emit('remove')">
                 Remove
             </button>
         </div>

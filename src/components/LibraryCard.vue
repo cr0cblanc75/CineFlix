@@ -25,7 +25,7 @@ const n = computed(() => props.library.movies.length)
         </div>
 
         <p class="mt-3 line-clamp-2 min-h-[2.5rem] text-xs leading-relaxed text-slate-500">
-            {{ library.description || 'No description.' }}
+            {{ library.description || 'No description' }}
         </p>
 
         <div class="mt-4 grid grid-cols-4 gap-2">
@@ -34,7 +34,7 @@ const n = computed(() => props.library.movies.length)
             </div>
         </div>
 
-        <RouterLink :to="`/lists/${library.id}`" class="mt-4 block rounded-full border border-slate-200 py-2 text-center text-xs font-semibold transition-colors hover:bg-slate-50">
+        <RouterLink :to="`/lists/${library.id}`" class="mt-4 block rounded-full border border-[var(--color-slate-300)] py-2 text-center text-xs font-semibold transition-colors hover:bg-slate-50">
             Open library
         </RouterLink>
     </article>

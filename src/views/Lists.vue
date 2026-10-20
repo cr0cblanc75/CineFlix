@@ -116,7 +116,7 @@ const fadeMask = computed(() => {
         </span>
       </div>
 
-      <button class="mt-4 inline-flex items-center gap-1.5 rounded-full bg-brand px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-brand-dark" @click="creating = true">
+      <button class="mt-4 inline-flex items-center gap-1.5 rounded-full bg-brand px-4 py-2 text-xs font-semibold text-white transition-colors hover:cursor-pointer hover:brightness-110" @click="creating = true">
         <span class="text-base leading-none">+</span> Create library
       </button>
 
