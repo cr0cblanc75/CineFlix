@@ -217,7 +217,7 @@ const moreInfo = computed(() => {
             <!-- Actions -->
             <div class="flex flex-col gap-3 border-t border-[var(--color-slate-300)] pt-5 sm:flex-row">
 
-              <button class="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5" :class="store.isFavorite(movie.imdbID)
+              <button class="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:cursor-pointer" :class="store.isFavorite(movie.imdbID)
                 ? 'bg-rose-100 text-rose-700 hover:bg-rose-200'
                 : 'bg-brand text-white shadow-sm hover:bg-brand-dark'" @click="store.toggleFavorite(movie)">
                 <svg viewBox="0 0 24 24" class="h-5 w-5" :fill="store.isFavorite(movie.imdbID) ? 'currentColor' : 'none'" stroke="currentColor" stroke-width="1.8">
@@ -228,7 +228,7 @@ const moreInfo = computed(() => {
                   : 'Add to Favourites' }}
               </button>
 
-              <button class="inline-flex items-center gap-2 rounded-full border border-[var(--color-slate-300)] bg-white px-6 py-3 text-sm font-semibold transition-colors hover:bg-slate-50" @click="showPicker = true">
+              <button class="inline-flex items-center gap-2 rounded-full border border-[var(--color-slate-300)] bg-white px-6 py-3 text-sm font-semibold transition-colors hover:bg-slate-50 hover:cursor-pointer" @click="showPicker = true">
                 <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2">
                   <path v-if="library.librariesOf(movie.imdbID).length" d="M5 12l5 5L20 7" />
                   <path v-else d="M12 5v14M5 12h14" />

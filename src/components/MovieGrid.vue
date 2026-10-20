@@ -48,9 +48,7 @@ defineEmits(['load-more'])
 
       <!-- Bouton Load More -->
       <div v-if="hasMore" class="mt-10 flex justify-center">
-        <button @click="$emit('load-more')" :disabled="loadingMore" class="rounded-full bg-white px-8 py-3 font-semibold text-slate-900
-                 shadow transition hover:bg-slate-100
-                 disabled:cursor-not-allowed disabled:opacity-50">
+        <button @click="$emit('load-more')" :disabled="loadingMore" class="rounded-full bg-white px-8 py-3 font-semibold text-[var(--color-slate-900)] shadow transition hover:brightness-110 hover:cursor-pointer disabled:cursor-not-allowed disabled:opacity-50">
           {{ loadingMore ? 'Loading...' : 'Load More' }}
         </button>
       </div>
