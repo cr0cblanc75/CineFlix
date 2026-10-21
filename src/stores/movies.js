@@ -4,10 +4,10 @@ import { getMovieById, searchMovies } from "../api/omdb";
 // OMDb has no endpoint "tendances" : with use a fine set selection of films
 const TRENDING_IDS = [
     "tt15398776", // Oppenheimer
-    "tt1160419", // Dune
-    "tt1375666", // Inception
-    "tt0816692", // Interstellar
-    "tt1856101", // Blade Runner 2049
+    "tt33764258", // L'Odyssé
+    "tt7526136", // Heart of the Beast
+    "tt28535715", // Whalefall
+    "tt28553375", // La Bataille de deGaulle
 ];
 
 function load(key) {
