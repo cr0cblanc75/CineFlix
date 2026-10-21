@@ -56,3 +56,10 @@ npm run build
 - Change name of a library + delete a library
 - confirmation message when clicking on "Delete"
 - sats on how many film y have in my Library + how many watched + how many unWatched
+
+<br>
+
+## Figma
+```
+https://www.figma.com/design/ouw6BrAHTKuycnKDMOGDtJ/Project---Interface?node-id=0-1&t=duWgMigdNnJUDZVH-1
+```
